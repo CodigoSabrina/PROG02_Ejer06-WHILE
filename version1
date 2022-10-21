@@ -1,0 +1,129 @@
+ public static void main(String[] args) {
+        // TODO code application logic here
+        /*
+        6. Realiza un programa que dada una cantidad de euros que el usuario introduce por
+        teclado(múltiplo de 5 €) mostrará los billetes de cada tipo que serán necesarios para
+        alcanzar dicha cantidad (utilizando billetes de 500, 200, 100, 50, 20, 10 y 5). Hay que indicar
+        el mínimo de billetes posible. Por ejemplo, si el usuario introduce 145 el programa indicará
+        que será necesario 1 billete de 100 €, 2 billetes de 20 € y 1 billete de 5 € (no será válido por
+        ejemplo 29 billetes de 5, que aunque sume 145 € no es el mínimo número de billetes
+        posible).
+        */
+        
+        Scanner entrada = new Scanner (System.in);
+        int contadorDiferentes = 0, eurosTotales, cantidad500 = 0, cantidad200 = 0, cantidad100 = 0, cantidad50 = 0, cantidad20 = 0, cantidad10 = 0, cantidad5 = 0;
+        String puntuacion, cantidad;
+        
+        
+        System.out.print("Introduce una cantidad de euros multiplo de 5: ");
+        eurosTotales = entrada.nextInt();
+            
+        while (eurosTotales % 5 != 0)
+        {
+            System.out.print("-- ERROR: La cantidad introducida no es multiplo de 5.--\n");
+            System.out.print("Introduce una cantidad de euros multiplo de 5: ");
+            eurosTotales = entrada.nextInt();
+        }
+        
+        while (eurosTotales > 0)
+        {
+            if (eurosTotales >= 500)
+            {
+                cantidad500 = eurosTotales / 500;
+                eurosTotales %= 500;
+                contadorDiferentes++; //Cuenta cuantos tipos de billete diferentes hay para usar apropiadamente puntuación en la impresión final.
+            }
+            if ((eurosTotales < 500) && (eurosTotales >= 200))
+            {
+                cantidad200 = eurosTotales / 200;
+                eurosTotales %= 200;
+                contadorDiferentes++;
+            }
+            if ((eurosTotales < 200) && (eurosTotales >= 100))
+            {
+                cantidad100 = eurosTotales / 100;
+                eurosTotales %= 100;
+                contadorDiferentes++;
+            }
+            if ((eurosTotales < 100) && (eurosTotales >= 50))
+            {
+                cantidad50 = eurosTotales / 50;
+                eurosTotales %= 50;
+                contadorDiferentes++;
+            }
+            if ((eurosTotales < 50) && (eurosTotales >= 20))
+            {
+                cantidad20 = eurosTotales / 20;
+                eurosTotales %= 20;
+                contadorDiferentes++;
+            }
+            if ((eurosTotales < 20) && (eurosTotales >= 10))
+            {
+                cantidad10 = eurosTotales / 10;
+                eurosTotales %= 10;
+                contadorDiferentes++;
+            }
+            if ((eurosTotales < 10) && (eurosTotales >= 5))
+            {
+                cantidad5 = eurosTotales / 5;
+                eurosTotales %= 5;
+                contadorDiferentes++;
+            }
+        }
+        
+        System.out.print("Seran necesarios ");
+        
+        if (cantidad500 > 0) // Si la cantidad de billetes de ese tipo es mayor que 0...
+        {
+            puntuacion = (contadorDiferentes > 1) ? ", " : ".\n"; // Si hay o no más tipos de billetes diferentes después de este...
+            cantidad = (cantidad500 >= 2) ? "billetes" : "billete"; // Si hay uno o más billetes de este tipo...
+            contadorDiferentes--; // Ya he contado este tipo de billete.
+            System.out.printf("%d %s de 500 euros%s", cantidad500, cantidad, puntuacion); // Imprimo la cantidad necesaria
+        }
+        if (cantidad200 > 0)
+        {
+            puntuacion = (contadorDiferentes > 1) ? ", " : ".\n";
+            cantidad = (cantidad200 >= 2) ? "billetes" : "billete";
+            contadorDiferentes--;
+            System.out.printf("%d %s de 200 euros%s", cantidad200, cantidad, puntuacion);
+        }
+        if (cantidad100 > 0)
+        {
+            puntuacion = (contadorDiferentes > 1) ? ", " : ".\n";
+            cantidad = (cantidad100 >= 2) ? "billetes" : "billete";
+            contadorDiferentes--;
+            System.out.printf("%d %s de 100 euros%s", cantidad100, cantidad, puntuacion);
+        }
+        if (cantidad50 > 0)
+        {
+            puntuacion = (contadorDiferentes > 1) ? ", " : ".\n";
+            cantidad = (cantidad50 >= 2) ? "billetes" : "billete";
+            contadorDiferentes--;
+            System.out.printf("%d %s de 50 euros%s", cantidad50, cantidad, puntuacion);
+        }
+        if (cantidad20 > 0)
+        {
+            puntuacion = (contadorDiferentes > 1) ? ", " : ".\n";
+            cantidad = (cantidad20 >= 2) ? "billetes" : "billete";
+            contadorDiferentes--;
+            System.out.printf("%d %s de 20 euros%s", cantidad20, cantidad, puntuacion);
+        }
+        if (cantidad10 > 0)
+        {
+            puntuacion = (contadorDiferentes > 1) ? ", " : ".\n";
+            cantidad = (cantidad10 >= 2) ? "billetes" : "billete";
+            contadorDiferentes--;
+            System.out.printf("%d %s de 10 euros%s", cantidad10, cantidad, puntuacion);
+        }
+        if (cantidad5 > 0)
+        {
+            puntuacion = (contadorDiferentes > 1) ? ", " : ".\n";
+            cantidad = (cantidad5 >= 2) ? "billetes" : "billete";
+            contadorDiferentes--;
+            System.out.printf("%d %s de 5 euros%s", cantidad5, cantidad, puntuacion);
+        }
+        else
+        {
+            System.out.print("0 billetes. No has introducido nada.\n");
+        }
+    }
